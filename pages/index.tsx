@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Image from 'next/image';
+import { PostCard, Categories, PostWidget } from '../components';
 
 const posts = [
 	{ title: 'Hello Next.js', author: 'Sara' },
@@ -27,9 +27,7 @@ const Home: NextPage = () => {
 					))}
 				</div>
 				<div className='col-span-1 lg:col-span-4'>
-          <div className='relative lg:sticky top-8'>
-            
-          </div>
+					<div className='relative lg:sticky top-8'></div>
 				</div>
 			</div>
 		</div>
