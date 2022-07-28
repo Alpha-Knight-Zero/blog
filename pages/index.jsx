@@ -6,15 +6,7 @@ import {
 	Header,
 	Layout,
 } from '../components';
-import React, { useEffect, useState } from 'react';
-
-const posts = [
-	{ title: 'Hello Next.js', author: 'Sara' },
-	{
-		title: 'Learn Next.js is awesome',
-		author: 'Radha',
-	},
-];
+import { getPosts } from '../services';
 
 const Home = () => {
 	return (
