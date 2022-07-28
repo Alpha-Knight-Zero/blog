@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { PostCard, Categories, PostWidget } from '../components';
+import { PostCard, Categories, PostWidget, Header } from '../components';
 
 const posts = [
 	{ title: 'Hello Next.js', author: 'Sara' },
