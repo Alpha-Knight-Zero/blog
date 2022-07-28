@@ -4,10 +4,11 @@ const grapgqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_API;
 
 export const getPosts = async () => {
 	const query = gql`
-		query PostQueryquery {
+		query MyQuery {
 			postsConnection {
 				edges {
 					node {
+						slug
 						author {
 							bio
 							name
