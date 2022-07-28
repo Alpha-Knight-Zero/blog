@@ -1,6 +1,12 @@
-import type { NextPage } from 'next';
 import Head from 'next/head';
-import { PostCard, Categories, PostWidget, Header } from '../components';
+import {
+	PostCard,
+	Categories,
+	PostWidget,
+	Header,
+	Layout,
+} from '../components';
+import React, { useEffect, useState } from 'react';
 
 const posts = [
 	{ title: 'Hello Next.js', author: 'Sara' },
@@ -10,7 +16,7 @@ const posts = [
 	},
 ];
 
-const Home: NextPage = () => {
+const Home = () => {
 	return (
 		<div className='container px-10 mx-auto mb-8 '>
 			<Head>
