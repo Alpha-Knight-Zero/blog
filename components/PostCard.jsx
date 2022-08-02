@@ -23,10 +23,7 @@ const PostCard = ({ post }) => {
 			<div className='items-center justify-center block w-full mb-8 text-center lg:flex'>
 				<div className='flex items-center justify-center w-full mb-4 mr-8 lg:mb-0 lg:w-auto'>
 					<Image
-						src={
-							post.author.photo?.url ||
-							'https://media.graphassets.com/bYWBt4F6QmGOf8KqHVrC'
-						}
+						src={post.author.photo?.url}
 						alt={post.author.name}
 						loading='lazy'
 						width={30}
@@ -53,7 +50,7 @@ const PostCard = ({ post }) => {
 						/>
 					</svg>
 					<span className='align-middle'>
-						{moment(post.createdAt).format('DD-MM-YYYY')}
+						{moment(post.createdAt).format('DD-MMM-YYYY')}
 					</span>
 				</div>
 			</div>
@@ -61,7 +58,7 @@ const PostCard = ({ post }) => {
 				{post.excerpt}
 			</p>{' '}
 			<div className='text-center'>
-				<Link href={`/post/${post.slug}`}>
+				<Link href={`/post/${post.slug}`} key={post.name}>
 					<span className='inline-block px-8 py-3 text-lg font-medium text-white transition duration-500 transform bg-pink-600 rounded-full cursor-pointer ease hover:-translate-y-1'>
 						Continue Reading
 					</span>
