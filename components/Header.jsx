@@ -1,4 +1,3 @@
-import React from 'react';
 import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import { getCategories } from '../services';
@@ -23,7 +22,7 @@ const Header = () => {
 					</Link>
 				</div>
 				<div className='hidden md:float-left md:contents'>
-					{Categories.map((category) => (
+					{categories.map((category) => (
 						<Link
 							href={`/category/${category.slug}`}
 							key={category.slug}
