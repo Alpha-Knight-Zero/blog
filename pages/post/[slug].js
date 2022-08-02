@@ -1,7 +1,7 @@
 import React from 'react';
 import { getPosts, getPostDetails } from '../../services';
 import {
-	Postdetail,
+	PostDetail,
 	Categories,
 	PostWidget,
 	Author,
@@ -9,19 +9,24 @@ import {
 	CommentsForm,
 } from '../../components';
 
-const PostDetails = () => {
+const PostDetails = ({ post }) => {
 	return (
 		<div className='container px-10 mx-auto mb-8'>
 			<div className='grid grid-cols-1 gap-12 lg:grid-cols-12'>
 				<div className='col-span-1 lg:col-span-8'>
-					<Postdetail />
-					<Author />
-					<Comments />
-					<CommentsForm />
+					<PostDetail post={post} />
+					<Author author={post.author} />
+					<Comments slug={post.slug} />
+					<CommentsForm slug={post.slug} />
 				</div>
 				<div className='col-span-1 lg:col-span-4'>
 					<div className='relative lg:sticky top-8'>
-						<PostWidget />
+						<PostWidget
+							slug={post.slug}
+							categories={post.categories.map(
+								(category) => category.slug
+							)}
+						/>
 						<Categories />
 					</div>
 				</div>
@@ -31,3 +36,13 @@ const PostDetails = () => {
 };
 
 export default PostDetails;
+
+export async function getStaticProps({ params }) {
+	const postDetails = (await getPostDetails(params.slug)) || [];
+
+	return {
+		props: {
+			post: postDetails,
+		},
+	};
+}
