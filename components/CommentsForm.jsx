@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { submitComment } from '../services';
 
 const CommentsForm = ({ slug }) => {
 	const [error, setError] = useState(false);
@@ -10,7 +11,12 @@ const CommentsForm = ({ slug }) => {
 	const emailEL = useRef();
 	const storeDataEL = useRef();
 
-	const handlePostSubmission = async (e) => {
+	useEffect(() => {
+		nameEL.current.value = window.localStorage.getItem('name');
+		emailEL.current.value = window.localStorage.getItem('email');
+	});
+
+	const handlePostSubmission = () => {
 		setError(false);
 
 		const { value: name } = nameEL.current;
@@ -31,12 +37,23 @@ const CommentsForm = ({ slug }) => {
 		};
 
 		if (storeData) {
-			localStorage.setItem('name', name);
-			localStorage.setItem('email', email);
+			window.localStorage.setItem('name', name);
+			window.localStorage.setItem('email', email);
 		} else {
-			localStorage.removeItem('name');
-			localStorage.removeItem('email');
+			window.localStorage.removeItem('name');
+			window.localStorage.removeItem('email');
 		}
+
+		submitComment(commentObj)
+			.then((res) => {
+				setShowSuccess(true);
+				setTimeout(() => {
+					setShowSuccess(false);
+				}, 3000);
+			})
+			.catch((err) => {
+				setError(true);
+			});
 	};
 
 	return (

@@ -7,6 +7,7 @@ import {
 	Layout,
 } from '../components';
 import { getPosts } from '../services';
+import { FeaturedPosts, AdjacentPosts } from '../sections';
 
 const Home = ({ posts }) => {
 	return (
@@ -14,7 +15,7 @@ const Home = ({ posts }) => {
 			<Head>
 				<title>Blog by Pushkal</title>
 			</Head>
-
+			<FeaturedPosts />
 			<div className='grid grid-cols-1 gap-12 lg:grid-cols-12'>
 				<div className='col-span-1 lg:col-span-8'>
 					{posts.map((post) => (
