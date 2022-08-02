@@ -1,16 +1,17 @@
 import React from 'react';
 import Link from 'next/link';
-
-const Categories = [
-	{ name: 'All', slug: 'all' },
-	{ name: 'Web', slug: 'web' },
-	{ name: 'Mobile', slug: 'mobile' },
-	{ name: 'Design', slug: 'design' },
-	{ name: 'Devops', slug: 'devops' },
-	{ name: 'Other', slug: 'other' },
-];
+import React, { useState, useEffect } from 'react';
+import { getCategories } from '../services';
 
 const Header = () => {
+	const [categories, setCategories] = useState([]);
+
+	useEffect(() => {
+		getCategories().then((data) => {
+			setCategories(data);
+		});
+	}, []);
+
 	return (
 		<div className='container px-10 mx-auto mb-8'>
 			<div className='inline-block w-full py-8 border-b border-blue-400'>
